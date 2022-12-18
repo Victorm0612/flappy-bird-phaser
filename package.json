@@ -1,0 +1,23 @@
+{
+  "name": "flappy-bird-phaser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victorm0612/flappy-bird-phaser.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Victorm0612/flappy-bird-phaser/issues"
+  },
+  "homepage": "https://github.com/Victorm0612/flappy-bird-phaser#readme",
+  "dependencies": {
+    "phaser": "^3.55.2"
+  }
+}
