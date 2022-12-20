@@ -120,17 +120,13 @@ function update(time) {
   // listen keyboard
   this.input.keyboard.on('keydown', (event) => {
     if (event.keyCode === 32) {
-      startGame();
-      jump.call(this);
+      startGame.call(this);
     }
   });
 
   // listen mouse
   this.input.on('pointerdown', () => {
-    if (isInitialState) {
-      startGame();
-    }  
-    jump.call(this);
+    startGame.call(this);
   });
 
   // Move Pipes
