@@ -45,9 +45,13 @@ var PipeDownClass = new Phaser.Class({
   }
 });
 
+// Score
+let score = 0;
+
 // Text variables
 let isInitialState = true;
 let showText = true;
+let scoreText;
 let text;
 let initialTextInterval;
 
@@ -55,6 +59,7 @@ let initialTextInterval;
 var soundtrack;
 var jumpSound;
 var failSound;
+var coinSound;
 
 function preload() {
   this.load.setBaseURL('http://localhost:5500/src/');
@@ -67,6 +72,7 @@ function preload() {
   this.load.audio('soundtrack', 'assets/music/Tech_Live.mp3');
   this.load.audio('jump', 'assets/sfx/jump.mp3');
   this.load.audio('fail', 'assets/sfx/fail.mp3');
+  this.load.audio('coin', 'assets/sfx/coin.mp3');
 }
 
 function create() {
@@ -84,12 +90,13 @@ function create() {
   if (!playing && !this.load.isLoading()) {
     playing = true;
     soundtrack.loop = true;
-    // soundtrack.play();
+    soundtrack.play();
   }
   
   // sfx jump
   jumpSound = this.sound.add('jump');
   failSound = this.sound.add('fail');
+  coinSound = this.sound.add('coin');
   
   pipeUp = this.physics.add.group({
     classType: PipeUpClass,
@@ -141,6 +148,12 @@ function update(time) {
       pipeDown.setVelocityX(-200);
       posX += 100;
     }
+    const newScore = pipeUp.getChildren().reduce((acc, crtV) => crtV.getBounds().right < 0 ? acc + 1 : acc, 0);
+    if (newScore !== score) {
+      score = newScore;
+      scoreText.setText(`SCORE: ${score}`);
+      coinSound.play();
+    }
   }
 }
 
@@ -156,6 +169,7 @@ function startGame() {
 }
 
 function createInitialText() {
+  scoreText = this.add.text(30, 20, `SCORE: ${score}`, { font: '24px VT323, monospace' });
   text = this.add.text(30, 50, `Press spacebar to start`, { font: '24px VT323, monospace' });
 
   initialTextInterval = setInterval(() => {
