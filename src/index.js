@@ -45,9 +45,6 @@ var PipeDownClass = new Phaser.Class({
   }
 });
 
-// Score
-let score = 0;
-
 // Text variables
 let isInitialState = true;
 let showText = true;
@@ -159,7 +156,6 @@ function startGame() {
 }
 
 function createInitialText() {
-  this.add.text(30, 20, `SCORE: ${score}`, { font: '24px VT323, monospace' });
   text = this.add.text(30, 50, `Press spacebar to start`, { font: '24px VT323, monospace' });
 
   initialTextInterval = setInterval(() => {
